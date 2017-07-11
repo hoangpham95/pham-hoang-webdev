@@ -1,8 +1,10 @@
-# web-dev-template
+# About me
+I'm a fourth year student at Northeastern University, CCIS. I had finished 2 co-ops, one at Boston working for UFA Inc as a software engineer and one at San Francisco working for Skillz Inc as an Android SDK engineer. 
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+# About the repository
+This repository hosts the assignment for CS 5610/4550 - web development.
+
+# Links to web deployment
+* Root to hosted development: https://pham-hoang-webdev.herokuapp.com/
+* Link to my project: https://pham-hoang-webdev.herokuapp.com/project/
+* Link to my assignment: https://pham-hoang-webdev.herokuapp.com/assignment
