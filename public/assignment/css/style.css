@@ -1,0 +1,16 @@
+input.form-control {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.container-fluid {
+    margin-top: 50px;
+}
+
+.navbar {
+    background-color: #2e6da4;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
