@@ -1,0 +1,56 @@
+.under-navbar {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.hp-list-item {
+    padding: 10px;
+    color: #2e6da4;
+    list-style: none;
+}
+
+.user-icon {
+    color: #2e6da4;
+}
+
+.newpage {
+    margin: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.no-style-list {
+    background-color: #2aabd2;
+    list-style: none;
+}
+
+.big-label {
+    font-size: x-large;
+}
+
+.widget-container {
+    position: relative;
+    margin: 10px;
+}
+
+.widget-container .pin-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.widget-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.widget-heading {
+    margin: 10px;
+}

@@ -1,0 +1,46 @@
+input.form-control {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.container-fluid {
+    margin-top: 50px;
+}
+
+.navbar {
+    background-color: #2e6da4;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
+
+.under-navbar {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.hp-icon-blue {
+    color: #2e6da4;
+}
+
+.list-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.hp-list-item {
+    padding: 10px;
+    color: #2e6da4;
+    list-style: none;
+}
+
+.hp-website-new {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+.delete-website {
+    margin-top: 10px;
+}
