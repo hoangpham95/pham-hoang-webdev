@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <h1>Register</h1>
+    <input ng-model="model.user.username" placeholder="Username" class="form-control">
+    <input ng-model="model.user.password" placeholder="Password" class="form-control" type="password">
+    <input ng-model="model.user.verifyPassword" placeholder="Verify password" class="form-control" type="password">
+
+    <a ng-click="model.register(model.user)" class="btn btn-primary btn-block">
+        Login
+    </a>
+    <a ng-click="model.gobackLogin()" class="btn btn-danger btn-block">
+        Cancel
+    </a>
+</div>

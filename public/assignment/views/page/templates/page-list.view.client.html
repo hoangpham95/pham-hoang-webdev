@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <a class="navbar-brand pull-left"
+       ng-href="#/user/{{model.userId}}/website/">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </a>
+    <label class="navbar-brand">Pages</label>
+    <a class="navbar-brand pull-right"
+        ng-href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+</nav>
+<div class="under-navbar">
+    <div class="hp-list-item" ng-repeat="page in model.pages">
+        <a ng-href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+            {{page.name}}
+        </a>
+        <a ng-href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+            <span class="glyphicon glyphicon-cog hp-icon-blue pull-right" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <a class="navbar-brand pull-right"
+       ng-href="#/user/{{model.userId}}">
+        <span class="glyphicon glyphicon-user user-icon" aria-hidden="true"></span>
+    </a>
+</nav>

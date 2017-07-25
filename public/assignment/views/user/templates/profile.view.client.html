@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <label class="navbar-brand">Profile</label>
+    <a ng-click="model.updateUser()" class="navbar-brand pull-right">
+        <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
+    </a>
+</nav>
+<div class="container-fluid under-navbar">
+    <div class="form-group">
+        <label>Username</label>
+        <input ng-model="model.user.username" class="form-control" type="text" placeholder="Username">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input ng-model="model.user.email" class="form-control" type="email" placeholder="Your email">
+    </div>
+    <div class="form-group">
+        <label>First name</label>
+        <input ng-model="model.user.firstName" class="form-control" type="text" placeholder="First name">
+    </div>
+    <div class="form-group">
+        <label>Last name</label>
+        <input ng-model="model.user.lastName" class="form-control" type="text" placeholder="Last name">
+    </div>
+    <div class="form-group">
+        <a class="btn btn-success btn-block" ng-click="model.gotoWeb()">
+            Websites
+        </a>
+        <a ng-click="model.logout()" class="btn btn-danger btn-block">
+            Logout
+        </a>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <a class="navbar-brand pull-right">
+        <span class="glyphicon glyphicon-user glyphicon-white" aria-hidden="true"></span>
+    </a>
+</nav>

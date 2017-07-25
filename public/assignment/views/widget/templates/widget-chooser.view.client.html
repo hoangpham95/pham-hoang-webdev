@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Widgets</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/pageStyle.css">
-</head>
-<body>
 <nav class="navbar navbar-default navbar-fixed-top">
-    <a class="navbar-brand pull-left" href="widget-list.html">
+    <a class="navbar-brand pull-left"
+       ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     </a>
     <label class="navbar-brand">Choose Widget</label>
@@ -20,7 +8,7 @@
 <div class="under-navbar widgets-margin">
     <ul>
         <li class="hp-list-item">
-            <a href="widget-heading.html">Header</a>
+            <a ng-click="model.newWidget('HEADING')">Header</a>
         </li>
         <li class="hp-list-item">Label</li>
         <li class="hp-list-item">HTML</li>
@@ -28,12 +16,12 @@
         <li class="hp-list-item">Link</li>
         <li class="hp-list-item">Button</li>
         <li class="hp-list-item">
-            <a href="widget-image.html">
+            <a ng-click="model.newWidget('IMAGE')">
                 Image
             </a>
         </li>
         <li class="hp-list-item">
-            <a href="widget-youtube.html">
+            <a ng-click="model.newWidget('YOUTUBE')">
                 YouTube
             </a>
         </li>
@@ -42,9 +30,7 @@
     </ul>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <a class="navbar-brand pull-right">
+    <a class="navbar-brand pull-right" ng-href="#/user/{{model.uid}}">
         <span class="glyphicon glyphicon-user glyphicon-white user-icon" aria-hidden="true"></span>
     </a>
 </nav>
-</body>
-</html>

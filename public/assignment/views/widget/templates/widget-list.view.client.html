@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <a class="navbar-brand pull-left"
+       ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </a>
+    <label class="navbar-brand">Widgets</label>
+    <a class="navbar-brand pull-right"
+        ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+</nav>
+<div class="under-navbar">
+    <div ng-repeat="widget in model.widgets">
+        <div class="widget-container">
+            <div ng-switch="widget.widgetType">
+                <div ng-switch-when="HEADING">
+                    <h1><b>{{widget.text}}</b></h1>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <img width="{{widget.width}}" src="{{widget.url}}">
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="{{widget.width}}"
+                                ng-src="{{model.getYoutubeEmbedUrl(widget.url)}}"
+                                frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtmlSource(widget.text)"></div>
+            </div>
+            <div class="pin-right-top">
+                <a ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
+                    <span class="glyphicon glyphicon-cog user-icon" aria-hidden="true"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <a class="navbar-brand pull-right"
+       ng-href="#/user/{{model.uid}}">
+        <span class="glyphicon glyphicon-user glyphicon-white user-icon" aria-hidden="true"></span>
+    </a>
+</nav>

@@ -1,0 +1,63 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="col-sm-4 hidden-xs">
+        <a class="navbar-brand pull-left"
+           ng-href="#/user/{{model.website.developerId}}/website">
+            <span class="glyphicon glyphicon-chevron-left glypicon-white" aria-hidden="true"></span>
+        </a>
+        <a class="navbar-brand pull-right no-right-margin no-right-padding">
+            <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
+        </a>
+
+        <div class="navbar-header">
+            <a class="navbar-brand">Websites</a>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <a class="navbar-brand pull-left hidden-sm hidden-md hidden-lg hidden-xl"
+            ng-href="#/user/{{model.website.developerId}}/website">
+            <span class="glyphicon glyphicon-chevron-left glypicon-white" aria-hidden="true"></span>
+        </a>
+
+        <a ng-click="model.updateWebsite(model.website)"
+           class="navbar-brand pull-right">
+            <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
+        </a>
+
+        <div class="navbar-header">
+            <label class="navbar-brand">Edit Website</label>
+        </div>
+    </div>
+</div>
+<div class="under-navbar">
+    <div class="col-sm-4 hidden-xs">
+        <div class="hp-list-item" ng-repeat="website in model.websites">
+            <a ng-href="#/user/{{model.website.developerId}}/website/{{website._id}}/page">
+                {{website.name}}
+            </a>
+            <a ng-href="#/user/{{model.website.developerId}}/website/{{website._id}}">
+                <span class="glyphicon glyphicon-cog hp-icon-blue pull-right" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <label>Website Name</label>
+        <input ng-model="model.website.name" class="form-control" value="Blogger">
+
+        <label>Website Description</label>
+        <input ng-model="model.website.description"
+            class="form-control"
+            placeholder="Description">
+        <a ng-click="model.deleteWebsite()"
+           class="btn btn-danger btn-block delete-website">
+            Delete
+        </a>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <a class="navbar-brand pull-right"
+        ng-href="#/user/{{model.website.developerId}}">
+        <span class="glyphicon glyphicon-user glyphicon-white" aria-hidden="true"></span>
+    </a>
+</nav>

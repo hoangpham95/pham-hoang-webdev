@@ -44,3 +44,28 @@ input.form-control {
 .delete-website {
     margin-top: 10px;
 }
+
+.widget-container {
+    position: relative;
+    margin: 10px;
+}
+
+.widget-container .pin-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.widget-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.widget-heading {
+    margin: 10px;
+}
