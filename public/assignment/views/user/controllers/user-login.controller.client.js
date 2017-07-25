@@ -1,8 +1,6 @@
 (function() {
     angular.module("WebAppMaker")
-        .controller("LoginController", LoginController)
-        .controller("RegisterController", RegisterController)
-        .controller("ProfileController", ProfileController);
+        .controller("LoginController", LoginController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -29,23 +27,6 @@
         }
 
 
-    }
-
-    function RegisterController($location, UserService) {
-        var vm = this;
-        vm.register = register;
-        vm.gobackLogin = gobackLogin;
-
-        function register(user) {
-            if (user.password === user.verifyPassword) {
-                UserService.createUser(user);
-                $location.url("/user/" + user._id);
-            }
-        }
-
-        function gobackLogin() {
-            $location.url("/default");
-        }
     }
 
     function ProfileController($routeParams, $location, UserService) {
