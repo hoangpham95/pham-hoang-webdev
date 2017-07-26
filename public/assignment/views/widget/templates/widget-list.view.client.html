@@ -14,18 +14,13 @@
         <div class="widget-container">
             <div ng-switch="widget.widgetType">
                 <div ng-switch-when="HEADING">
-                    <h1><b>{{widget.text}}</b></h1>
+                    <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
                 </div>
                 <div ng-switch-when="IMAGE">
-                    <img width="{{widget.width}}" src="{{widget.url}}">
+                    <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
                 </div>
                 <div ng-switch-when="YOUTUBE">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe width="{{widget.width}}"
-                                ng-src="{{model.getYoutubeEmbedUrl(widget.url)}}"
-                                frameborder="0"
-                                allowfullscreen></iframe>
-                    </div>
+                    <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
                 </div>
                 <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtmlSource(widget.text)"></div>
             </div>

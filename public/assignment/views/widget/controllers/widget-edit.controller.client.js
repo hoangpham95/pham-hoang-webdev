@@ -17,7 +17,7 @@
         }
 
         function updateWidget(widget) {
-            if (!widget || !widget.text) {
+            if (!widget) {
                 vm.error = "Empty content is not allowed";
             } else {
                 WidgetService.updateWidget(vm.widgetId, widget);

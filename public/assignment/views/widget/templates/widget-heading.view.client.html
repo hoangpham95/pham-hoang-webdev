@@ -1,14 +1,8 @@
-<div class="under-navbar widget-heading">
-    <label>Name</label>
-    <input ng-model="model.widget.name" class="form-control">
-
-    <label>Text</label>
-    <input ng-model="model.widget.text" class="form-control" value="US Senate Reaches Compromise on Emergency">
-
-    <label>Size</label>
-    <input ng-model="model.widget.size" class="form-control" value="3">
-
-    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">
-        Delete
-    </a>
+<div ng-switch="widget.size">
+    <h1 ng-switch-when="1">{{widget.text}}</h1>
+    <h2 ng-switch-when="2">{{widget.text}}</h2>
+    <h3 ng-switch-when="3">{{widget.text}}</h3>
+    <h4 ng-switch-when="4">{{widget.text}}</h4>
+    <h5 ng-switch-when="5">{{widget.text}}</h5>
+    <h6 ng-switch-when="6">{{widget.text}}</h6>
 </div>
