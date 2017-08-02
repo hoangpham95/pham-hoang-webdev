@@ -10,25 +10,27 @@
     </a>
 </nav>
 <div class="under-navbar">
-    <div ng-repeat="widget in model.widgets">
-        <div class="widget-container">
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADING">
-                    <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
+    <div wdbv-sortable="{{model.pid}}">
+        <div ng-repeat="widget in model.widgets">
+            <div class="widget-container">
+                <div ng-switch="widget.widgetType">
+                    <div ng-switch-when="HEADING">
+                        <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
+                    </div>
+                    <div ng-switch-when="IMAGE">
+                        <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
+                    </div>
+                    <div ng-switch-when="YOUTUBE">
+                        <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
+                    </div>
+                    <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtmlSource(widget.text)"></div>
                 </div>
-                <div ng-switch-when="IMAGE">
-                    <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
+                <div class="pin-right-top">
+                    <a ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog user-icon" aria-hidden="true"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                 </div>
-                <div ng-switch-when="YOUTUBE">
-                    <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
-                </div>
-                <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtmlSource(widget.text)"></div>
-            </div>
-            <div class="pin-right-top">
-                <a ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
-                    <span class="glyphicon glyphicon-cog user-icon" aria-hidden="true"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
             </div>
         </div>
     </div>

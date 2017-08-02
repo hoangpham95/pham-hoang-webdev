@@ -13,16 +13,41 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pid);
+            PageService.findPageById(vm.pid)
+                .success(function(res) {
+                    vm.page = res;
+                })
+                .error(function() {
+                    console.log("Can't find page by id");
+                });
+
+            PageService.findPageByWebsiteId(vm.wid)
+                .success(function (res) {
+                    vm.pages = res;
+                })
+                .error(function () {
+                    console.log("Can't find page by website id");
+                });
         }
 
         function updatePage(page) {
-            PageService.updatePage(vm.pid, page);
+            PageService.updatePage(vm.pid, vm.page)
+                .success(function(res) {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                })
+                .error(function() {
+                    console.log("Cannot update page");
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(vm.pid);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+            PageService.deletePage(vm.pid)
+                .success(function(res) {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                })
+                .error(function() {
+                    console.log("Cannot delete page");
+                });
         }
 
         init();

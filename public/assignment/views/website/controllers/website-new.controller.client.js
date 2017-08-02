@@ -9,12 +9,27 @@
         vm.addNewWebsite = addNewWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.uid);
+            WebsiteService
+                .findWebsitesByUser(vm.uid)
+                .success(function(res) {
+                    vm.websites = res;
+                })
+                .error(function() {
+                    console.log("can't find websites by user with id: " + vm.uid);
+                });
         }
 
         function addNewWebsite(website) {
-            WebsiteService.createWebsite(vm.uid, website);
-            $location.url("/user/" + vm.uid + "/website");
+            if (website) {
+                WebsiteService
+                    .createWebsite(vm.uid, website)
+                    .success(function (res) {
+                        $location.url("/user/" + vm.uid + "/website");
+                    })
+                    .error(function () {
+                        console.log("Fail to create website");
+                    });
+            }
         }
 
         init();

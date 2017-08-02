@@ -13,22 +13,38 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            WidgetService.findWidgetById(vm.widgetId)
+                .success(function(res) {
+                    vm.widget = res;
+                })
+                .error(function() {
+                    console.log("Cannot find widget by id");
+                });
         }
 
         function updateWidget(widget) {
             if (!widget) {
                 vm.error = "Empty content is not allowed";
             } else {
-                WidgetService.updateWidget(vm.widgetId, widget);
-                $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget');
+                WidgetService.updateWidget(vm.widgetId, widget)
+                    .success(function(res) {
+                        $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget');
+                    })
+                    .error(function() {
+                        vm.error = "Cannot update widget";
+                    });
             }
 
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget');
+            WidgetService.deleteWidget(vm.widgetId)
+                .success(function(res) {
+                    $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget');
+                })
+                .error(function() {
+                    vm.error = "Cannot delete widget";
+                });
         }
 
         init();

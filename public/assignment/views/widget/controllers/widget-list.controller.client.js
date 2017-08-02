@@ -13,7 +13,13 @@
         vm.getTrustedHtmlSource = getTrustedHtmlSource;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            WidgetService.findWidgetsByPageId(vm.pid)
+                .success(function(res) {
+                    vm.widgets = res;
+                })
+                .error(function() {
+                    console.log("Cannot find widgets by page id");
+                });
         }
 
         function getYoutubeEmbedUrl(widgetUrl) {

@@ -11,8 +11,12 @@
         vm.newWidget = newWidget;
 
         function newWidget(widgetType) {
-            var widgetId = WidgetService.createWidget(vm.pid, widgetType);
-            $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget/' + widgetId);
+            WidgetService.createWidget(vm.pid, widgetType)
+                .success(function(res) {
+                    $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget/' + res);
+                }).error(function() {
+                    vm.error = "Cannot create widget";
+                });
         }
     }
 })();

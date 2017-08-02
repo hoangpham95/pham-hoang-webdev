@@ -9,8 +9,24 @@
 
         function register(user) {
             if (user.password === user.verifyPassword) {
-                UserService.createUser(user);
-                $location.url("/user/" + user._id);
+                UserService
+                    .findUserByUsername(user.username)
+                    .success(function (user) {
+                        vm.error = "sorry that username is taken"
+                    })
+                    .error(function(){
+                        UserService
+                            .createUser(user)
+                            .success(function(user){
+                                console.log('create user successfully');
+                                $location.url('/user/' + user._id);
+                            })
+                            .error(function () {
+                                vm.error = 'sorry could not register';
+                            });
+                    });
+            } else {
+                vm.error = "Password do not match";
             }
         }
 

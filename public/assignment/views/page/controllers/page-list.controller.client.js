@@ -8,7 +8,13 @@
         vm.websiteId = $routeParams['wid'];
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPageByWebsiteId(vm.websiteId)
+                .success(function (res) {
+                    vm.pages = res;
+                })
+                .error(function () {
+                    console.log("Can't find page by website id: " + vm.websiteId);
+                });
         }
 
         init();

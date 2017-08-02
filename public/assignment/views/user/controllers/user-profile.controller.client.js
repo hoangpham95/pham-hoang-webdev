@@ -11,7 +11,10 @@
         vm.logout = logout;
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService.findUserById(vm.userId)
+                .success(function(user) {
+                    vm.user = user;
+                });
         }
 
         function gotoWeb() {
@@ -19,7 +22,12 @@
         }
 
         function updateUser() {
-            UserService.updateUser(vm.userId, vm.user);
+            UserService.updateUser(vm.userId, vm.user)
+                .success(function(res) {
+                    vm.message = "User successfully updated";
+                }).error(function (err) {
+                    vm.error = "Unable to update user";
+                })
         }
 
         function logout() {
