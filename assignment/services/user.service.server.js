@@ -1,10 +1,12 @@
-module.exports = function (app, model) {
+module.exports = function (app) {
     app.post("/api/user", createUser);
-    app.get("/api/user?username=username", findUserByUserName);
-    app.get("/api/user?username=username&password=password", findUserByCredential);
+    app.get("/api/user", findUserByUserName);
+    app.get("/api/user", findUserByCredential);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+
+    console.log("User service");
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -21,6 +23,8 @@ module.exports = function (app, model) {
     }
 
     function findUserByCredential(req, res) {
+        console.log("Find user by credentials");
+
         var username = req.query['username'];
         var password = req.query['password'];
 
