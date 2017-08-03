@@ -14,7 +14,8 @@
 
         return api;
 
-        function createWidget(pageId, widget) {
+        function createWidget(pageId, type) {
+            const widget = {widgetType: type};
             return $http.post("/api/page/" + pageId + "/widget", widget);
         }
 

@@ -16,8 +16,10 @@ module.exports = function (app, model) {
         var page = req.body;
 
         page.websiteId = websiteId;
-        page._id = (new Date()).now().toString();
+        page._id = (new Date()).getTime().toString();
         pages.push(page);
+
+        res.sendStatus(200);
     }
 
     function findAllPagesForWebsite(req, res) {

@@ -16,6 +16,9 @@
             WidgetService.findWidgetById(vm.widgetId)
                 .success(function(res) {
                     vm.widget = res;
+                    vm.widget.userId = vm.uid;
+                    vm.widget.pageId = vm.pid;
+                    vm.widget.websiteId = vm.wid;
                 })
                 .error(function() {
                     console.log("Cannot find widget by id");

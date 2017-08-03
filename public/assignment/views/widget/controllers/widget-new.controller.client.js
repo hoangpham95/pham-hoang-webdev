@@ -13,7 +13,7 @@
         function newWidget(widgetType) {
             WidgetService.createWidget(vm.pid, widgetType)
                 .success(function(res) {
-                    $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget/' + res);
+                    $location.url('/user/' + vm.uid + '/website/' + vm.wid + '/page/' + vm.pid + '/widget/' + res._id);
                 }).error(function() {
                     vm.error = "Cannot create widget";
                 });

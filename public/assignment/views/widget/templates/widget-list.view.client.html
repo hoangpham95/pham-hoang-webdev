@@ -10,7 +10,7 @@
     </a>
 </nav>
 <div class="under-navbar">
-    <div wdbv-sortable="{{model.pid}}">
+    <div wbdv-sortable="{{model.pid}}">
         <div ng-repeat="widget in model.widgets">
             <div class="widget-container">
                 <div ng-switch="widget.widgetType">
@@ -35,6 +35,7 @@
         </div>
     </div>
 </div>
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <a class="navbar-brand pull-right"
        ng-href="#/user/{{model.uid}}">

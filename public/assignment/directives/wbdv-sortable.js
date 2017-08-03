@@ -1,29 +1,31 @@
-(function() {
-    angular.module('WebAppMaker')
-        .directive('wdbvSortable', sortableDir);
-    
-    function sortableDir(WidgetService) {
-        function linkFunction(scope, element, attributes) {
+(function () {
+    angular
+        .module('WebAppMaker')
+        .directive('wbdvSortable', sortableDiv);
+
+    console.log('directive');
+    function sortableDiv(WidgetService) {
+        function sortLinking(scope, element, attributes) {
             element.sortable({
                 axis: 'y',
                 start: function (event, ui) {
-                    startIndex = ui.item.index();
+                    initial = ui.item.index();
                 },
                 stop: function (event, ui) {
-                    endIndex = ui.item.index();
-                    WidgetService.sortWidget(attributes.wbdvSortable, startIndex, endIndex)
+                    final = ui.item.index();
+                    WidgetService.sortWidget(attributes.wbdvSortable, initial, final)
                         .success(function(res) {
-                            console.log("success");
+                            console.log("Success sorting widget");
                         })
                         .error(function() {
-                            console.log("cannot sort widget");
-                        })
+                            console.log("Cannot sort widget");
+                        });
                 }
             });
         }
 
         return {
-            link: linkFunction
+            link: sortLinking
         };
     }
 })();

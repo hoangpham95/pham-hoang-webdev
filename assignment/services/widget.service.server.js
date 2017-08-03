@@ -30,12 +30,12 @@ module.exports = function (app, model) {
         var newWidget = req.body;
 
         if (newWidget) {
-            newWidget._id = (new Date()).now().toString();
+            newWidget._id = (new Date()).getTime().toString();
             newWidget.pageId = req.params['pageId'];
 
             widgets.push(newWidget);
             res.status(200)
-                .send(newWidget._id);
+                .send(newWidget);
         } else {
             res.sendStatus(404);
         }
@@ -120,13 +120,13 @@ module.exports = function (app, model) {
     }
 
     function uploadImage(req, res) {
-        var widgetId      = req.body._id;
+        var widgetId      = req.body.widgetId;
         var width         = req.body.width;
         var myFile        = req.file;
 
-        var userId = req.body.userId;
-        var websiteId = req.body.websiteId;
-        var pageId = req.body.pageId;
+        var userId = req.body.uid;
+        var websiteId = req.body.wid;
+        var pageId = req.body.pid;
 
 
         var originalname  = myFile.originalname; // file name on user's computer
@@ -136,8 +136,8 @@ module.exports = function (app, model) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var callbackUrl = '/assignment/#/user/' + userId + '/website' + websiteId;
+        var callbackUrl = '/assignment/#/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
 
-        res.redirect();
+        res.redirect(callbackUrl);
     }
 };

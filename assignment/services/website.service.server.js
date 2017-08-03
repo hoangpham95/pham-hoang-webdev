@@ -20,13 +20,13 @@ module.exports = function (app, model) {
         var website = req.body;
 
         if (website) {
-            website._id = (new Date()).now().toString();
+            website._id = (new Date()).getTime().toString();
             website.developerId = userId;
 
             websites.push(website);
-            res.status(200);
+            res.sendStatus(200);
         } else {
-            res.status(404);
+            res.sendStatus(404);
         }
     }
 

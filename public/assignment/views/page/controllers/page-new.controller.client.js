@@ -13,13 +13,13 @@
             if (!page || !page.name || !page.description || page.name === "" || page.description === "") {
                 vm.error = "Cannot create empty page";
             } else {
-                PageService.findPageByWebsiteId(vm.wid)
+                PageService.createPage(vm.wid, vm.page)
                     .success(function(res) {
-                        vm.pages = res;
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
                     })
                     .error(function() {
-                        console.log("Can't find page by website id: " + vm.wid);
-                    });
+                        console.log("can't create page");
+                    })
             }
         }
     }
