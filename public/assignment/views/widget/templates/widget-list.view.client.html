@@ -24,6 +24,9 @@
                         <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
                     </div>
                     <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtmlSource(widget.text)"></div>
+                    <div ng-switch-when="TEXT" ng-bind-html="model.getTrustedHtmlSource(widget.text)">
+                        <ng-include src="'views/widget/templates/widget-text.view.client.html'"></ng-include>
+                    </div>
                 </div>
                 <div class="pin-right-top">
                     <a ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">

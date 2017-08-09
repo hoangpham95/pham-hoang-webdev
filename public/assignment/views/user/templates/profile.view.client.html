@@ -5,6 +5,9 @@
     </a>
 </nav>
 <div class="container-fluid under-navbar">
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
     <div class="form-group">
         <label>Username</label>
         <input ng-model="model.user.username" class="form-control" type="text" placeholder="Username">

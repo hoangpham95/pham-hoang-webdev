@@ -24,6 +24,7 @@
         function updateUser() {
             UserService.updateUser(vm.userId, vm.user)
                 .success(function(res) {
+                    console.log("Update user success");
                     vm.message = "User successfully updated";
                 }).error(function (err) {
                     vm.error = "Unable to update user";

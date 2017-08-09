@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
     <h1>Register</h1>
     <input ng-model="model.user.username" placeholder="Username" class="form-control">
     <input ng-model="model.user.password" placeholder="Password" class="form-control" type="password">

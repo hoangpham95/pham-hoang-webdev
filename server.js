@@ -10,6 +10,8 @@ app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 
+require('./assignment/model/model.server')();
+
 var assignment = require("./assignment/app.js");
 assignment(app);
 

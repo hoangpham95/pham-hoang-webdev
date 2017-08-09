@@ -8,13 +8,16 @@
         vm.gobackLogin = gobackLogin;
 
         function register(user) {
+            console.log("Register user");
             if (user.password === user.verifyPassword) {
                 UserService
                     .findUserByUsername(user.username)
                     .success(function (user) {
+                        console.log("User: " + user);
                         vm.error = "sorry that username is taken"
                     })
                     .error(function(){
+                        console.log("Creating user");
                         UserService
                             .createUser(user)
                             .success(function(user){
