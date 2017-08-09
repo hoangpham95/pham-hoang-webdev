@@ -24,7 +24,7 @@ module.exports = function () {
         websiteModel
             .create(website, function(err, doc) {
                 if (err) {
-                    deferred.abort(err);
+                    deferred.reject(err);
                 } else {
                     deferred.resolve(doc);
                 }
@@ -37,7 +37,7 @@ module.exports = function () {
         websiteModel
             .find({_user: userId}, function(err, websites) {
                 if (err) {
-                    deferred.abort(err);
+                    deferred.reject(err);
                 } else {
                     deferred.resolve(websites);
                 }
@@ -50,7 +50,7 @@ module.exports = function () {
         websiteModel
             .findOne({_id: wid}, function (err, website) {
                 if (err) {
-                    deferred.abort(err);
+                    deferred.reject(err);
                 } else {
                     deferred.resolve(website);
                 }
@@ -63,7 +63,7 @@ module.exports = function () {
         websiteModel
             .findOneAndUpdate({_id: wid}, website, function(err, doc) {
                 if (err) {
-                    deferred.abort(err);
+                    deferred.reject(err);
                 } else {
                     deferred.resolve(doc);
                 }
@@ -75,7 +75,7 @@ module.exports = function () {
         var deferred = q.defer();
         websiteModel.remove({_id: wid}, function (err, status) {
             if(err) {
-                deferred.abort(err);
+                deferred.reject(err);
             } else {
                 deferred.resolve(status);
             }

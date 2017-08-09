@@ -20,18 +20,18 @@
                     vm.error("Can't find websites by user id: " + vm.uid);
                 });
 
-            WebsiteService.findWebsiteById(vm.wid)
+            WebsiteService.findWebsiteById(vm.websiteId)
                 .success(function(res) {
                     console.log(res);
                     vm.website = res;
                 })
                 .error(function() {
-                    vm.error("Can't find websites by website id: " + vm.wid)
+                    vm.error = "Can't find websites by website id: " + vm.wid;
                 })
         }
 
         function updateWebsite(website) {
-            WebsiteService.updateWebsite(vm.wid, website)
+            WebsiteService.updateWebsite(vm.websiteId, website)
                 .success(function(res) {
                     $location.url("/user/" + vm.uid + "/website");
                 })
@@ -41,7 +41,7 @@
         }
 
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(vm.wid)
+            WebsiteService.deleteWebsite(vm.websiteId)
                 .success(function(res) {
                     $location.url("/user/" + vm.uid + "/website");
                 })

@@ -7,7 +7,7 @@ module.exports = function (app, model) {
 
     function createPage(req, res) {
         model.pageModel
-            .createPage(req.params.wid, req.body)
+            .createPage(req.params.websiteId, req.body)
             .then(function (page) {
                 res.status(200).send(page);
             }, function (err) {
@@ -17,7 +17,7 @@ module.exports = function (app, model) {
 
     function findAllPagesForWebsite(req, res) {
         model.pageModel
-            .findAllPagesForWebsite(req.params.wid)
+            .findAllPagesForWebsite(req.params.websiteId)
             .then(function (pages) {
                 res.status(200).send(pages);
             }, function (err) {
@@ -27,7 +27,7 @@ module.exports = function (app, model) {
 
     function findPageById(req, res) {
         model.pageModel
-            .findPageById(req.params.pid)
+            .findPageById(req.params.pageId)
             .then(function (page) {
                 res.status(200).send(page);
             }, function (err) {
@@ -37,7 +37,7 @@ module.exports = function (app, model) {
 
     function updatePage(req, res) {
         model.pageModel
-            .updatePage(req.params.pid, req.body)
+            .updatePage(req.params.pageId, req.body)
             .then(function () {
                 res.sendStatus(200);
             }, function (err) {
@@ -47,7 +47,7 @@ module.exports = function (app, model) {
 
     function deletePage(req, res) {
         model.pageModel
-            .deletePage(req.params.pid)
+            .deletePage(req.params.pageId)
             .then(function () {
                 res.sendStatus(200);
             }, function (err) {

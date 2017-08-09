@@ -27,8 +27,10 @@ module.exports = function (app, model) {
         model.widgetModel
             .findAllWidgetsForPage(req.params.pageId)
             .then(function (widgets) {
-                console.log(widgets);
-                res.status(200).send(widgets);
+                var sorted = widgets.sort(function(a, b) {
+                    return a.order - b.order;
+                });
+                res.status(200).send(sorted);
             }, function (err) {
                 res.status(404).send(err);
             });

@@ -9,6 +9,15 @@
 
         vm.newPage = newPage;
 
+        function init() {
+            PageService.findPageByWebsiteId(vm.wid)
+                .success(function(pages) {
+                    vm.pages = pages;
+                }).error(function(error) {
+                    console.log("Can't get page");
+                });
+        }
+
         function newPage(page) {
             if (!page || !page.name || !page.description || page.name === "" || page.description === "") {
                 vm.error = "Cannot create empty page";
@@ -22,5 +31,7 @@
                     })
             }
         }
+
+        init();
     }
 })();

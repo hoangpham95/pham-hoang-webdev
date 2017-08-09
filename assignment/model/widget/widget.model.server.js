@@ -101,8 +101,7 @@ module.exports = function () {
     }
 
     function reorderWidget(pid, start, end) {
-        console.log('start: ' + start);
-        console.log('end: ' + end);
+        console.log('start: ' + start + "end: " + end);
 
         var deferred = q.defer();
         widgetModel
@@ -112,7 +111,6 @@ module.exports = function () {
                     deferred.reject(err);
                 } else {
                     var st = widgets.find(function(tmp) {
-                        console.log(tmp.order + ", " + start);
                         return tmp.order == start;
                     });
 
@@ -130,6 +128,7 @@ module.exports = function () {
                         st.order = end;
 
                         for (var w in widgets) {
+                            console.log(widgets[w].order);
                             widgets[w].save(function(err) {
                                 if (err) {
                                     deferred.reject(err);
@@ -142,7 +141,7 @@ module.exports = function () {
                                 widgets[w].order++;
                             }
                         }
-                        st.order = start;
+                        st.order = end;
 
                         for (var w in widgets) {
                             widgets[w].save(function(err) {

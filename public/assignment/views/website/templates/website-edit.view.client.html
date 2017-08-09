@@ -32,10 +32,10 @@
 <div class="under-navbar">
     <div class="col-sm-4 hidden-xs">
         <div class="hp-list-item" ng-repeat="website in model.websites">
-            <a ng-href="#/user/{{model.website.developerId}}/website/{{website._id}}/page">
+            <a ng-href="#/user/{{model.uid}}/website/{{website._id}}/page">
                 {{website.name}}
             </a>
-            <a ng-href="#/user/{{model.website.developerId}}/website/{{website._id}}">
+            <a ng-href="#/user/{{model.uid}}/website/{{website._id}}">
                 <span class="glyphicon glyphicon-cog hp-icon-blue pull-right" aria-hidden="true"></span>
             </a>
         </div>
@@ -57,7 +57,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <a class="navbar-brand pull-right"
-        ng-href="#/user/{{model.website.developerId}}">
+        ng-href="#/user/{{model.uid}}">
         <span class="glyphicon glyphicon-user glyphicon-white" aria-hidden="true"></span>
     </a>
 </nav>
