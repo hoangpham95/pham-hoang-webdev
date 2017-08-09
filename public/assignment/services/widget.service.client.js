@@ -9,7 +9,7 @@
             "findWidgetById": findWidgetById,
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
-            "sortWidget": sortWidget
+            "sortWidget": sortWidget,
         };
 
         return api;

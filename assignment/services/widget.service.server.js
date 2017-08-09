@@ -11,7 +11,7 @@ module.exports = function (app, model) {
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     function createWidget(req, res) {
         model.widgetModel
@@ -27,6 +27,7 @@ module.exports = function (app, model) {
         model.widgetModel
             .findAllWidgetsForPage(req.params.pageId)
             .then(function (widgets) {
+                console.log(widgets);
                 res.status(200).send(widgets);
             }, function (err) {
                 res.status(404).send(err);
@@ -64,9 +65,9 @@ module.exports = function (app, model) {
     }
 
     function sortWidget(req, res) {
-        var initial = req.query['initial'];
-        var final = req.query['final'];
-        var pid = req.params['pid'];
+        var initial = req.query.initial;
+        var final = req.query.final;
+        var pid = req.params.pid;
 
         model.widgetModel
             .reorderWidget(pid, initial, final)
@@ -79,6 +80,8 @@ module.exports = function (app, model) {
 
     function uploadImage(req, res) {
         var widgetId      = req.body.widgetId;
+        var name = req.body.name;
+        var text = req.body.text;
         var width         = req.body.width;
         var myFile        = req.file;
 
@@ -96,6 +99,14 @@ module.exports = function (app, model) {
 
         var callbackUrl = '/assignment/#/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget';
 
-        res.redirect(callbackUrl);
+        var widget = {_id: widgetId, name: name, text: text, width: width, url: path + '.png'};
+
+        model.widgetModel.updateWidget(widgetId, widget)
+            .then(function(widget) {
+                res.status(200)
+                    .redirect(callbackUrl);
+            }, function(err) {
+                res.sendStatus(500);
+            });
     }
 };

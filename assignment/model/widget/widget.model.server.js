@@ -103,19 +103,22 @@ module.exports = function () {
     function reorderWidget(pid, start, end) {
         console.log('start: ' + start);
         console.log('end: ' + end);
+
         var deferred = q.defer();
         widgetModel
             .find({_page: pid})
             .exec(function(err, widgets) {
-                if (err || widgets === null) {
+                if (err || !widgets) {
                     deferred.reject(err);
                 } else {
                     var st = widgets.find(function(tmp) {
-                        return tmp.order === start;
+                        console.log(tmp.order + ", " + start);
+                        return tmp.order == start;
                     });
 
-                    if (st === null) {
+                    if (!st) {
                         deferred.reject();
+                        return;
                     }
 
                     if (start < end) {

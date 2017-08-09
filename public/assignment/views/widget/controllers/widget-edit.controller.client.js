@@ -11,6 +11,7 @@
 
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.uploadImage = uploadImage;
 
         function init() {
             WidgetService.findWidgetById(vm.widgetId)
@@ -47,6 +48,16 @@
                 })
                 .error(function() {
                     vm.error = "Cannot delete widget";
+                });
+        }
+
+        function uploadImage() {
+            WidgetService.uploadImage(vm.widget)
+                .success(function(res) {
+                    console.log(res);
+                })
+                .error(function(err) {
+                    console.log(err);
                 });
         }
 

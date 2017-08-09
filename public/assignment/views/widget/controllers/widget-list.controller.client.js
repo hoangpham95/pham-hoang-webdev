@@ -16,6 +16,7 @@
             WidgetService.findWidgetsByPageId(vm.pid)
                 .success(function(res) {
                     vm.widgets = res;
+                    console.log(vm.widgets);
                 })
                 .error(function() {
                     console.log("Cannot find widgets by page id");
