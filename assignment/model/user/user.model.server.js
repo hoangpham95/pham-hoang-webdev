@@ -15,7 +15,8 @@ module.exports = function() {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByFacebookId: findUserByFacebookId,
     };
 
     return api;
@@ -56,7 +57,7 @@ module.exports = function() {
         var deferred = q.defer();
 
         userModel
-            .findOne({username: username, password: pasword})
+            .findOne({username: username, password: password})
             .exec(function(error, user) {
                 if (error) {
                     deferred.abort(error);
@@ -72,7 +73,7 @@ module.exports = function() {
         userModel
             .findOneAndUpdate({_id: userId}, user, function(err, doc) {
                 if (err) {
-                    deferred.abort(err);
+                    deferred.reject(err);
                 } else {
                     deferred.resolve(doc);
                 }
@@ -97,11 +98,15 @@ module.exports = function() {
         var deferred = q.defer();
         userModel.create(user, function(err, user) {
             if (err) {
-                deferred.abort();
+                deferred.reject(err);
             } else {
                 deferred.resolve(user);
             }
         });
         return deferred.promise;
+    }
+
+    function findUserByFacebookId(facebookId) {
+        return userModel.findOne({"facebook.id": facebookId});
     }
 };

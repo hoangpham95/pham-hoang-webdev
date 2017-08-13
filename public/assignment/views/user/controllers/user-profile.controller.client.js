@@ -2,7 +2,7 @@
     angular.module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($rootScope, $routeParams, $location, UserService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
 
@@ -11,10 +11,14 @@
         vm.logout = logout;
 
         function init() {
-            UserService.findUserById(vm.userId)
-                .success(function(user) {
-                    vm.user = user;
-                });
+            if (!vm.userId) {
+                vm.user = $rootScope.currentUser;
+            } else {
+                UserService.findUserById(vm.userId)
+                    .success(function (user) {
+                        vm.user = user;
+                    });
+            }
         }
 
         function gotoWeb() {
@@ -22,7 +26,7 @@
         }
 
         function updateUser() {
-            UserService.updateUser(vm.userId, vm.user)
+            UserService.updateUser(vm.user._id, vm.user)
                 .success(function(res) {
                     console.log("Update user success");
                     vm.message = "User successfully updated";

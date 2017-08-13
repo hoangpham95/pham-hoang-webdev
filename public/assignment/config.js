@@ -83,6 +83,28 @@
                 templateUrl: "views/widget/templates/widget-flickr-search.view.client.html",
                 controller: "FlickrImageSearchController",
                 controllerAs: "model"
+            })
+            .when("/profile", {
+                templateUrl: "./views/user/templates/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedIn}
             });
+    }
+
+    var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        $http.get('/api/loggedin')
+            .success(function(user) {
+                $rootScope.errorMessage = null;
+                if (user !== '0') {
+                    $rootScope.currentUser = user;
+                    deferred.resolve(user);
+                } else {
+                    deferred.reject(user);
+                    $location('/');
+                }
+            });
+        return deferred.promise;
     }
 })();

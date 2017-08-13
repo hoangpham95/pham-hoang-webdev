@@ -10,6 +10,13 @@ app.use(cookieParser());
 
 app.use(express.static(__dirname + '/public'));
 
+var session = require('express-session');
+app.use(session({ secret: 'aG9hbmdwaGFtOTU=' }));
+
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
 require('./assignment/model/model.server')();
 
 var assignment = require("./assignment/app.js");

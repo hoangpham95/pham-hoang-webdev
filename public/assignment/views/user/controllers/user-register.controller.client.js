@@ -2,7 +2,7 @@
     angular.module("WebAppMaker")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService) {
+    function RegisterController($rootScope, $location, UserService) {
         var vm = this;
         vm.register = register;
         vm.gobackLogin = gobackLogin;
@@ -17,16 +17,13 @@
                         vm.error = "sorry that username is taken"
                     })
                     .error(function(){
-                        console.log("Creating user");
-                        UserService
-                            .createUser(user)
-                            .success(function(user){
-                                console.log('create user successfully');
-                                $location.url('/user/' + user._id);
-                            })
-                            .error(function () {
-                                vm.error = 'sorry could not register';
-                            });
+                        UserService.register(user)
+                            .success(function(usr) {
+                                $rootScope.currentUser = user;
+                                $location.url("/user/" + usr._id);
+                            }).error(function(error) {
+                                vm.error = "Cannot register user";
+                        })
                     });
             } else {
                 vm.error = "Password do not match";

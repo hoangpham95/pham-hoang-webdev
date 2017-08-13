@@ -14,6 +14,10 @@ module.exports = function() {
         dateCreated: {type: Date, default: Date.now},
         websites: [
             {type: mongoose.Schema.Types.ObjectId, ref: 'website'}
-        ]
+        ],
+        facebook: {
+            id: String,
+            token: String
+        }
     }, {collection: 'user'});
 };

@@ -7,27 +7,32 @@
 
         vm.login = login;
         vm.register = register;
+        vm.logout = logout;
         
         function login(user) {
             if (!user || !user.username || !user.password || user.username === "" || user.password === "") {
                 vm.error = "Wrong username/password";
             }
 
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise.success(function(validUser) {
-                console.log(validUser);
-                if (validUser) {
+            UserService.login(user)
+                .success(function(validUser) {
                     $location.url("/user/" + validUser._id);
-                } else {
-                    vm.error = "Unable to login";
-                }
-            }).error(function(err) {
-               vm.error = "User not found";
-            });
+                }).error(function(error) {
+                    vm.error = "Cannot login";
+            })
         }
 
         function register(user) {
             $location.url("/register");
+        }
+
+        function logout() {
+            UserService.logout()
+                .success(function() {
+                    $location.url("/");
+                }).error(function(error) {
+                    vm.error = "Cannot logout";
+            })
         }
     }
 })();
