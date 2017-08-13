@@ -44,6 +44,7 @@ module.exports = function (app, model) {
             .then(function (user) {
                 callback(null, user);
             }, function (err) {
+                console.log(err);
                 callback(err, null);
             });
     }
@@ -70,17 +71,21 @@ module.exports = function (app, model) {
                     done(null, user);
                 }
             }, function (error) {
+                console.log(error);
                 done(error, null);
             })
     }
 
     function localStrategy(username, password, callback) {
-        model.userModel.findUserByCredentials(username, password)
+        model.userModel.findUserByUsername(username)
             .then(function (user) {
-                if (user) {
+                if (user && user !== null && bcrypt.compareSync(password, user.password)) {
                     callback(null, user);
+                } else {
+                    callback("Cannot find user", null);
                 }
             }, function (error) {
+                console.log(error);
                 callback(error, null);
             });
     }
@@ -95,10 +100,14 @@ module.exports = function (app, model) {
 
     function register(req, res) {
         var user = req.body;
-        
+
+        if (user.password) {
+            user.password = bcrypt.hashSync(user.password);
+        }
+
         model.userModel.createUser(user)
             .then(function (usr) {
-                if (user) {
+                if (usr) {
                     req.login(usr, function (err) {
                         if (err) {
                             res.status(400).send(err);
@@ -117,9 +126,11 @@ module.exports = function (app, model) {
 
     function login(req, res) {
         var user = req.body;
-        model.userModel.findUserByCredentials(user.username, user.password)
+        model.userModel.findUserByUsername(user.username)
             .then(function (usr) {
-                res.json(usr);
+                if (bcrypt.compareSync(user.password, usr.password)) {
+                    res.json(usr);
+                }
             }, function (error) {
                 res.status(404).send(error);
             });
