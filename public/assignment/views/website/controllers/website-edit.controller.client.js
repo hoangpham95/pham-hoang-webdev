@@ -31,13 +31,17 @@
         }
 
         function updateWebsite(website) {
-            WebsiteService.updateWebsite(vm.websiteId, website)
-                .success(function(res) {
-                    $location.url("/user/" + vm.uid + "/website");
-                })
-                .error(function() {
-                    console.log("Cannot update website");
-                });
+            if (website.name && website.name.length > 0) {
+                WebsiteService.updateWebsite(vm.websiteId, website)
+                    .success(function(res) {
+                        $location.url("/user/" + vm.uid + "/website");
+                    })
+                    .error(function() {
+                        console.log("Cannot update website");
+                    });
+            } else {
+                vm.error = "Website name should not be empty";
+            }
         }
 
         function deleteWebsite() {

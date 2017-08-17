@@ -8,6 +8,13 @@
         vm.gobackLogin = gobackLogin;
 
         function register(user) {
+            if (!user.username || !user.password ||!user.verifyPassword
+                || user.username.length === 0
+                || user.password.length === 0
+                || user.verifyPassword.length === 0) {
+                vm.error = "All the fields are required";
+                return;
+            }
             console.log("Register user");
             if (user.password === user.verifyPassword) {
                 UserService

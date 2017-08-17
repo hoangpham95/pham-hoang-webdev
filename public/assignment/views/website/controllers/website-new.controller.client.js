@@ -20,7 +20,7 @@
         }
 
         function addNewWebsite(website) {
-            if (website) {
+            if (website && website.name && website.name.length > 0) {
                 WebsiteService
                     .createWebsite(vm.uid, website)
                     .success(function (res) {
@@ -29,6 +29,8 @@
                     .error(function () {
                         console.log("Fail to create website");
                     });
+            } else {
+                vm.error = "Website name should not be empty";
             }
         }
 

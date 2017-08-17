@@ -27,8 +27,8 @@
         }
 
         function updateWidget(widget) {
-            if (!widget) {
-                vm.error = "Empty content is not allowed";
+            if (!widget || !widget.name || widget.name.length === 0) {
+                vm.error = "Empty name widget is not allowed";
             } else {
                 WidgetService.updateWidget(vm.widgetId, widget)
                     .success(function(res) {

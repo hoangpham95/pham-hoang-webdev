@@ -31,13 +31,17 @@
         }
 
         function updatePage(page) {
-            PageService.updatePage(vm.pid, vm.page)
-                .success(function(res) {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-                })
-                .error(function() {
-                    console.log("Cannot update page");
-                });
+            if (page && page.name && page.name.length > 0) {
+                PageService.updatePage(vm.pid, vm.page)
+                    .success(function(res) {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                    })
+                    .error(function() {
+                        console.log("Cannot update page");
+                    });
+            } else {
+                vm.error = "Cannot update page with empty name";
+            }
         }
 
         function deletePage() {

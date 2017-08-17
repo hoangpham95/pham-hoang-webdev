@@ -19,8 +19,8 @@
         }
 
         function newPage(page) {
-            if (!page || !page.name || !page.description || page.name === "" || page.description === "") {
-                vm.error = "Cannot create empty page";
+            if (!page || !page.name || page.name === "") {
+                vm.error = "Cannot create page with empty name";
             } else {
                 PageService.createPage(vm.wid, vm.page)
                     .success(function(res) {

@@ -11,7 +11,7 @@
         
         function login(user) {
             if (!user || !user.username || !user.password || user.username === "" || user.password === "") {
-                vm.error = "Wrong username/password";
+                vm.error = "Required username and password";
             }
 
             UserService.login(user)
